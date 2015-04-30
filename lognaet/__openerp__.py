@@ -19,17 +19,16 @@
 ##############################################################################
 
 {
-    'name': 'Wide Sheet',
-    'category': 'Hidden',
+    'name': 'Lognaet',
+    'category': 'Log',
     'description':"""
-Lets the documents (forms using sheet tag) to be wider 
-===========================
-
-""",
+        Log accounting program for control and statistics.
+        """,
     'version': '0.1',
     'depends': [],
     'js': [],
-    'css': ['static/src/css/wide_sheet.css'],
+    'css': [],
     'auto_install': False,
     'web_preload': False,
+    'application': True,
 }
