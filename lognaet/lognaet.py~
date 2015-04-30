@@ -42,7 +42,37 @@ _logger = logging.getLogger(__name__)
 
 class LognaetMovement(orm.Model):
     ''' Default object for manage movement modifications
-    '''
+    '''    
+    _name = 'lognaet.movement'
+    _description = 'Log movement'
+    
+    _columns = {
+        'name': fields.char('Reference', size=50),
+        'cause': fields.selection([
+            ('01', 'Delete'),
+            ('02', 'Variation (Q)'),
+            ('03', 'Variation (Price)'),
+            ('04', 'Variation (Discount)'),
+            ('05', 'Add'),
+            ], 'Cause'),
+        'lot': fields.char('Lot', size=18),
+        'hostname': fields.char('Hostname', size=30),
+        'username': fields.char('Username', size=30),
+        'document': fields.char('Document', size=15),
+        'series': fields.char('Series', size=2),
+        'code': fields.char('Code', size=20),
+        'number': fields.char('Number', size=15),
+        'fiscalcode': fields.char('Fiscalcode', size=21),
+        'date': fields.date('Date'),
+        'year': fields.char('Lot', size=4),
+        'timestamp': fields.char('Timestamp', size=15),
+        'previous': fields.char('Previous', size=15),
+        'current': fields.char('Current', size=15),
+        }
+        
+    _defaults = {
+        'timestamp': datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+        }    
     
 class LognaetOrder(orm.Model):
     ''' Default object for manage order statistics
