@@ -10,8 +10,9 @@ from datetime import datetime
 #                                Parameters
 # -----------------------------------------------------------------------------
 # Config file:
-cfg_file = os.path.join(os.path.expanduser(
-    os.path.join(os.path.abspath(os.path.curdir), "openerp.cfg"))
+cfg_file = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "openerp.cfg", )
     
 config = ConfigParser.ConfigParser()
 config.read([cfg_file])
