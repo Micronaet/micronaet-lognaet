@@ -154,21 +154,21 @@
         <field name="model">lognaet.order</field>
         <field name="arch" type="xml">
             <tree string="Order" version="7.0">
-                    <field name="name"/>
-                    
-                    <field name="hostname"/>
-                    <field name="username"/>
-                    
-                    <field name="user"/>
-                    <field name="type"/>
+                <field name="name"/>
+                
+                <field name="hostname"/>
+                <field name="username"/>
+                
+                <field name="user"/>
+                <field name="type"/>
 
-                    <field name="start"/>
-                    <field name="end"/>
-                    
-                    <field name="date"/>
-                    <field name="total"/>
+                <field name="start"/>
+                <field name="end"/>
+                
+                <field name="date"/>
+                <field name="total"/>
 
-                    <field name="timestamp"/>
+                <field name="timestamp"/>
             </tree>
         </field>
     </record>
