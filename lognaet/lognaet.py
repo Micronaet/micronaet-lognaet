@@ -44,6 +44,14 @@ class LognaetMovement(orm.Model):
     ''' Default object for manage movement modifications
     '''
     
+    _name = 'lognaet.movement'
+    _description = 'Log movement'
+    
+    _columns = {
+        'name':fields.char('Name', size=50),
+        
+        }
+    
 class LognaetOrder(orm.Model):
     ''' Default object for manage order statistics
     '''
