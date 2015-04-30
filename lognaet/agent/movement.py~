@@ -20,7 +20,7 @@ port = config.get('openerp', 'port')
 dbname = config.get('openerp', 'dbname')
 user = config.get('openerp', 'user')
 pwd = config.get('openerp', 'pwd')
-mm_file = config.get('openerp', 'mm_file')
+mm_file = config.get('mexal', 'mm_file')
 
 # -----------------------------------------------------------------------------
 # XMLRPC connection for autentication (UID) and proxy 

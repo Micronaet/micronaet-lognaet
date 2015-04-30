@@ -67,7 +67,7 @@ class LognaetMovement(orm.Model):
         'year': fields.char('Year', size=4),
         'previous': fields.char('Previous', size=15),
         'current': fields.char('Current', size=15),
-        'timestamp': fields.char('Timestamp', size=15),
+        'timestamp': fields.char('Timestamp', size=25),
         }
         
     _defaults = {
