@@ -87,7 +87,10 @@ class LognaetOrder(orm.Model):
         'username': fields.char('Username', size=30),
 
         'user': fields.char('Mexal user', size=30),
-        'type': fields.char('Type', size=30), # TODO selection
+        'type': fields.selection([
+            ('ModOC', 'Modify'),
+            ('InsOC', 'Insert'), 
+            ], 'Type'),
         'start': fields.char('Start time', size=10),
         'end': fields.char('End time', size=10),
         'date': fields.date('Date'),

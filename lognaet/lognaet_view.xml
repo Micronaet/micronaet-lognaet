@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+    <!--lognaet.movement-->
+    <record id="lognaet_movement_search" model="ir.ui.view">
+        <field name="name">lognaet.movement.search</field>
+        <field name="model">lognaet.movement</field>
+        <field name="arch" type="xml">
+            <search string="Accessory pricelist">
+                <field name="name"/>
+                <field name="hostname"/>
+                <field name="username"/>
+                <field name="document"/>
+                <field name="cause"/>
+                <field name="previous"/>
+                <field name="current"/>
+                <field name="article"/>
+                <field name="lot"/>
+                <field name="date"/>
+                <field name="year"/>
+                <field name="code"/>
+                <!--<field name="supplier_id" filter_domain="[('supplier_id','ilike',self)]"/>-->
+
+                <group expand="1" string="Group By...">
+                    <filter string="Cause" domain="[]" context="{'group_by':'cause'}"/>
+                    <filter string="Document" domain="[]" context="{'group_by':'document'}"/>
+                    <filter string="Date" domain="[]" context="{'group_by':'date'}"/>
+                    <filter string="Timestamp" domain="[]" context="{'group_by':'timestamp'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="lognaet_movement_form" model="ir.ui.view">
+        <field name="name">lognaet.movement.form</field>
+        <field name="model">lognaet.movement</field>
+        <field name="arch" type="xml">
+            <form string="Movement" version="7.0">
+            <sheet>
+                <group colspan='4' col='4'>
+                    <field name="name" colspan="4"/>
+                    
+                    <field name="hostname"/>
+                    <field name="username"/>
+                    
+                    <field name="document"/>
+                    <field name="cause"/>
+
+                    <field name="previous"/>
+                    <field name="current"/>
+                    
+                    <field name="article"/>
+                    <field name="lot"/>
+                    
+                    <field name="date"/>
+                    <field name="year"/>
+
+                    <field name="code"/>
+                    <field name="timestamp"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="lognaet_movement_tree" model="ir.ui.view">
+        <field name="name">lognaet.movement.tree</field>
+        <field name="model">lognaet.movement</field>
+        <field name="arch" type="xml">
+            <tree string="Movement" version="7.0">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="hostname"/>
+                <field name="username"/>
+                <field name="document" invisible="1"/>
+                <field name="cause"/>
+                <field name="previous"/>
+                <field name="current"/>
+                <field name="article"/>
+                <field name="lot"/>
+                <!--<field name="year"/>-->
+                <field name="code"/>
+                <field name="timestamp"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_lognaet_movement" model="ir.actions.act_window">
+            <field name="name">Lognaet Movement</field>
+            <field name="res_model">lognaet.movement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="lognaet_movement_tree"/>
+            <field name="search_view_id" ref="lognaet_movement_search"/>
+    </record>
+
+    <!--lognaet.order-->
+    <record id="lognaet_order_search" model="ir.ui.view">
+        <field name="name">lognaet.order.search</field>
+        <field name="model">lognaet.order</field>
+        <field name="arch" type="xml">
+            <search string="Accessory pricelist">
+                <field name="name"/>
+                <field name="hostname"/>
+                <field name="username"/>
+                <field name="user"/>
+                <field name="type"/>
+                <!--<field name="start"/>
+                <field name="end"/>-->
+                <field name="date"/>
+                <field name="total"/>
+                <!--<field name="supplier_id" filter_domain="[('supplier_id','ilike',self)]"/>-->
+
+                <group expand="1" string="Group By...">
+                    <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
+                    <filter string="Date" domain="[]" context="{'group_by':'date'}"/>
+                    <filter string="Timestamp" domain="[]" context="{'group_by':'timestamp'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="lognaet_order_form" model="ir.ui.view">
+        <field name="name">lognaet.order.form</field>
+        <field name="model">lognaet.order</field>
+        <field name="arch" type="xml">
+            <form string="Order" version="7.0">
+            <sheet>
+                <group colspan='4' col='4'>
+                    <field name="name" colspan="4"/>
+                    
+                    <field name="hostname"/>
+                    <field name="username"/>
+                    
+                    <field name="user"/>
+                    <field name="type"/>
+
+                    <field name="start"/>
+                    <field name="end"/>
+                    
+                    <field name="date"/>
+                    <field name="total"/>
+
+                    <field name="timestamp"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="lognaet_order_tree" model="ir.ui.view">
+        <field name="name">lognaet.order.tree</field>
+        <field name="model">lognaet.order</field>
+        <field name="arch" type="xml">
+            <tree string="Order" version="7.0">
+                    <field name="name"/>
+                    
+                    <field name="hostname"/>
+                    <field name="username"/>
+                    
+                    <field name="user"/>
+                    <field name="type"/>
+
+                    <field name="start"/>
+                    <field name="end"/>
+                    
+                    <field name="date"/>
+                    <field name="total"/>
+
+                    <field name="timestamp"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_lognaet_order" model="ir.actions.act_window">
+            <field name="name">Lognaet order</field>
+            <field name="res_model">lognaet.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="lognaet_order_tree"/>
+            <field name="search_view_id" ref="lognaet_order_search"/>
+    </record>
+
+    <!--Menuitem-->
+    <menuitem name="Lognaet" id="menu_lognaet_root" sequence="5" groups="lognaet.group_lognaet_supervisor"/>
+        <menuitem name="Accounting" parent="menu_lognaet_root" id="menu_lognaet_accounting" sequence="10"/>
+            <menuitem name="Movement" parent="menu_lognaet_accounting" 
+                id="menu_lognaet_movement" sequence="10" 
+                action="action_lognaet_movement"/>
+            <menuitem name="Order" parent="menu_lognaet_accounting" 
+                id="menu_lognaet_order" sequence="20" 
+                action="action_lognaet_order"/>
+    </data>
+</openerp>
