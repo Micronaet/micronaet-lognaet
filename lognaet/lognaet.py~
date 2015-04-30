@@ -74,8 +74,8 @@ class LognaetMovement(orm.Model):
         'timestamp': datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
         }    
     
-class LognaetOrder(orm.Model):
-    ''' Default object for manage order statistics
-    '''
+#class LognaetOrder(orm.Model):
+#    ''' Default object for manage order statistics
+#    '''
     
     
