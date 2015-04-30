@@ -49,25 +49,25 @@ class LognaetMovement(orm.Model):
     _columns = {
         'name': fields.char('Reference', size=50),
         'cause': fields.selection([
-            ('01', 'Delete'),
-            ('02', 'Variation (Q)'),
-            ('03', 'Variation (Price)'),
-            ('04', 'Variation (Discount)'),
-            ('05', 'Add'),
+            ('1', 'Delete'),
+            ('2', 'Variation (Q)'),
+            ('3', 'Variation (Price)'),
+            ('4', 'Variation (Discount)'),
+            ('5', 'Add'),
             ], 'Cause'),
-        'lot': fields.char('Lot', size=18),
         'hostname': fields.char('Hostname', size=30),
         'username': fields.char('Username', size=30),
-        'document': fields.char('Document', size=15),
-        'series': fields.char('Series', size=2),
-        'code': fields.char('Code', size=20),
-        'number': fields.char('Number', size=15),
-        'fiscalcode': fields.char('Fiscalcode', size=21),
+        'document': fields.char('Type of doc.', size=15), # TODO selection!!
+        #'series': fields.char('Series', size=2),
+        #'number': fields.char('Number', size=15),
+        'article': fields.char('Article', size=20),
+        'lot': fields.char('Lot', size=18),
+        'code': fields.char('Partner code', size=10),
         'date': fields.date('Date'),
-        'year': fields.char('Lot', size=4),
-        'timestamp': fields.char('Timestamp', size=15),
+        'year': fields.char('Year', size=4),
         'previous': fields.char('Previous', size=15),
         'current': fields.char('Current', size=15),
+        'timestamp': fields.char('Timestamp', size=15),
         }
         
     _defaults = {

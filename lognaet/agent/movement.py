@@ -1,7 +1,9 @@
 import getpass
 import platform
 import sys
+import os
 import ConfigParser
+import xmlrpclib
 from datetime import datetime
 
 # -----------------------------------------------------------------------------
@@ -29,27 +31,33 @@ sock = xmlrpclib.ServerProxy(
     'http://%s:%s/xmlrpc/object' % (server, port), allow_none=True)
 
 for row in open(mm_file, 'r'): # loop on all rows
-    row.replace(chr('0'), " ") # Accounting bug
+    row.replace(chr(0), ' ') # Accounting bug
+    
+    document = row[58:60].strip() # Type of doc
     sock.execute(
         dbname, uid, pwd, 'lognaet.movement', 'create', {
-            'name': row[60:66], # Number
-            'lot': row[11:16], # Lot
-            'cause': row[16:18], # Cause: 
+            'name': "%s/%s:%s" % (
+                document,
+                row[66:67].strip(), # Serial
+                row[60:66].strip(), # Number
+                ),
+            'cause': row[16:18].strip(), # Cause: 
                 # 01 Del, 02 Var(Q), 03 Var(P.), 04 Var(Disc), 05 Add
             'hostname': platform.node(), # computer name
             'username': getpass.getuser(), # user name
-            'document': row[58:60], # Type of doc
-            'series': row[66:67], # Serial  row[16:18].replace(chr(0), ''), # Document
-            'code': row[:16], # ID article
-            'number': row[60:66], # Number
-            'fiscalcode': row[67:69], # Fiscal code
+            'document': document,
+            #'series': series,
+            #'number': number
+            'article': row[:16].strip(), # ID article
+            'lot': row[11:16].strip(), # Lot
+            'code': row[67:65].strip(), # Partner code
             'date': "%s-%s-%s" % (# Date
                 row[79:83], 
                 row[83:85], 
-                row[85:87], ,)
-            'year': row[75:79].replace(chr(0), ''), # Year
-            'previous': row[18:38].replace(chr(0), ''), # Previous
-            'current': row[38:58].replace(chr(0), ''), # Current
+                row[85:87], ),
+            'year': row[75:79].strip(), # Year
+            'previous': row[18:38].strip(), # Previous
+            'current': row[38:58].strip(), # Current
             })
 
 # Remove file:
