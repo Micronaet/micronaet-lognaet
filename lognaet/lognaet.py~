@@ -74,8 +74,30 @@ class LognaetMovement(orm.Model):
         'timestamp': datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
         }    
     
-#class LognaetOrder(orm.Model):
-#    ''' Default object for manage order statistics
-#    '''
+class LognaetOrder(orm.Model):
+    ''' Default object for manage order statistics
+    '''
+    _name = 'lognaet.order'
+    _description = 'Log order'
     
+    _columns = {
+        'name': fields.char('Reference', size=100),
+
+        'hostname': fields.char('Hostname', size=30),
+        'username': fields.char('Username', size=30),
+
+        'user': fields.char('Mexal user', size=30),
+        'type': fields.char('Type', size=30), # TODO selection
+        'start': fields.char('Start time', size=10),
+        'end': fields.char('End time', size=10),
+        'date': fields.date('Date'),
+        'total': fields.integer('Total row'),
+
+        'timestamp': fields.char('Timestamp', size=25),
+        }
+        
+    _defaults = {
+        'timestamp': datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+        }    
+        
     
