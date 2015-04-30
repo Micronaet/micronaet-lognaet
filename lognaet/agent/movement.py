@@ -11,7 +11,7 @@ from datetime import datetime
 # -----------------------------------------------------------------------------
 # Config file:
 cfg_file = os.path.join(os.path.expanduser(
-    os.path.join(os.path.curdir, "openerp.cfg"))
+    os.path.join(os.path.abspath(os.path.curdir), "openerp.cfg"))
     
 config = ConfigParser.ConfigParser()
 config.read([cfg_file])
