@@ -24,6 +24,7 @@ mm_file = config.get('mexal', 'mm_file')
 
 # -----------------------------------------------------------------------------
 # XMLRPC connection for autentication (UID) and proxy 
+# -----------------------------------------------------------------------------
 sock = xmlrpclib.ServerProxy(
     'http://%s:%s/xmlrpc/common' % (server, port), allow_none=True)
 uid = sock.login(dbname, user, pwd)
