@@ -10,7 +10,9 @@ from datetime import datetime
 #                                Parameters
 # -----------------------------------------------------------------------------
 # Config file:
-cfg_file = os.path.join(os.path.expanduser("openerp.cfg"))
+cfg_file = os.path.join(os.path.expanduser(
+    os.path.join(os.path.curdir, "openerp.cfg"))
+    
 config = ConfigParser.ConfigParser()
 config.read([cfg_file])
 
@@ -24,13 +26,15 @@ mm_file = config.get('mexal', 'mm_file')
 
 # -----------------------------------------------------------------------------
 # XMLRPC connection for autentication (UID) and proxy 
+# -----------------------------------------------------------------------------
 sock = xmlrpclib.ServerProxy(
     'http://%s:%s/xmlrpc/common' % (server, port), allow_none=True)
 uid = sock.login(dbname, user, pwd)
 sock = xmlrpclib.ServerProxy(
     'http://%s:%s/xmlrpc/object' % (server, port), allow_none=True)
 
-for row in open(mm_file, 'r'): # loop on all rows
+f = open(mm_file, 'r')
+for row in f: # loop on all rows
     row = row.replace(chr(0), ' ') # Accounting bug
     
     document = row[58:60].strip() # Type of doc
@@ -59,6 +63,7 @@ for row in open(mm_file, 'r'): # loop on all rows
             'previous': row[18:38].strip(), # Previous
             'current': row[38:58].strip(), # Current
             })
+f.close()
 
 # Remove file:
-os.delete(mm_file)
+os.remove(mm_file)
