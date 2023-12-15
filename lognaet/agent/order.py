@@ -45,13 +45,13 @@ sock.execute(
             sys.argv[5],  # stop time
             sys.argv[3],  # number of row
             ),
-        'hostname': platform.node(), # computer name
-        'username': getpass.getuser(), # user name
+        'hostname': platform.node(),  # computer name
+        'username': getpass.getuser(),  # user name
 
         # 'user': # TODO ???
-        'type': sys.argv[1], # type
-        'start': sys.argv[4], # start time
-        'end': sys.argv[5], # end time
-        # 'date': sys.argv[2], # account date  TODO format
-        'total': int(sys.argv[3]), # number of row
+        'type': sys.argv[1],  # type
+        'start': sys.argv[4],  # start time
+        'end': sys.argv[5],  # end time
+        # 'date': sys.argv[2],  # account date  TODO format
+        'total': int(sys.argv[3]),  # number of row
         })
