@@ -78,7 +78,9 @@ setup = (
         'time',
         'subprocess',
         'os',
-        ]),
+        ],
+     ['total_virtmem', ],
+     ),
     ('platform', platform, [
         # Too much data:
 
@@ -92,7 +94,7 @@ setup = (
         ]),
     )
 
-for name, library, excluded in setup:
+for name, library, excluded, byte_convert in setup:
     data[name] = {}
     data[name]['info'] = {}
     data[name]['error'] = {}
@@ -125,6 +127,8 @@ for name, library, excluded in setup:
             # -----------------------------------------------------------------
             # Simple call direct:
             # -----------------------------------------------------------------
+            elif command in byte_convert:
+                data[name]['info'][method] = get_size(eval(command))
             elif command_type == tuple:
                 data[name]['info'][method] = eval(command)
             else:   # Function
