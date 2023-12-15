@@ -129,9 +129,17 @@ for name, library, excluded, byte_value, byte_function in setup:
             # Simple call direct:
             # -----------------------------------------------------------------
             elif method in byte_value:
-                data[name]['info'][method] = get_size(eval(command))
+                value = eval(command)
+                data[name]['info'][method] = '%s - %s' % (
+                    get_size(value),
+                    value,
+                )
             elif method in byte_function:
-                data[name]['info'][method] = get_size(eval('%s()' % command))
+                value = eval('%s()' % command)
+                data[name]['info'][method] = '%s - %s' % (
+                    get_size(value),
+                    value,
+                )
             elif command_type == tuple:
                 data[name]['info'][method] = eval(command)
             else:   # Function
