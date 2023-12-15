@@ -52,49 +52,51 @@ def get_size(bytes, suffix='B'):
 # -----------------------------------------------------------------------------
 data = {}
 
-setup = (
+setup = [
     # Library name, Library, Excluded command
-    ('psutil', psutil, [
-        # Too much data:
-        'get_process_list',
-        'net_connections',
-        'get_pid_list',
-        'pids',
-        'test',
+    (
+        'psutil',
+        psutil,
+        [
+            # Too much data:
+            'get_process_list',
+            'net_connections',
+            'get_pid_list',
+            'pids',
+            'test',
 
-        # Unused:
-        'process_iter',
+            # Unused:
+            'process_iter',
 
-        # Error data:
-        'pid_exists',
-        'disk_usage',
-        'sys',
-        'warnings',
-        'errno',
-        'signal',
-        'wait_procs',
-        'callable',
-        'pwd',
-        'time',
-        'subprocess',
-        'os',
+            # Error data:
+            'pid_exists', 'disk_usage', 'sys', 'warnings', 'errno',
+            'signal', 'wait_procs', 'callable', 'pwd',
+            'time', 'subprocess', 'os',
+            ],
+        [],
+        [
+            'avail_phymem',
         ],
-     ['total_virtmem', ],
-     ),
-    ('platform', platform, [
-        # Too much data:
+    ),
+    (
+        'platform',
+        platform, [
+            # Too much data:
 
-        # Error data:
-        'popen',
-        'string',
-        'sys',
-        're',
-        'os',
-        'system_alias',
-        ]),
-    )
+            # Error data:
+            'popen',
+            'string',
+            'sys',
+            're',
+            'os',
+            'system_alias',
+            ],
+        [],
+        [],
+    ),
+    ]
 
-for name, library, excluded, byte_convert in setup:
+for name, library, excluded, byte_value, byte_function in setup:
     data[name] = {}
     data[name]['info'] = {}
     data[name]['error'] = {}
@@ -108,7 +110,6 @@ for name, library, excluded, byte_convert in setup:
             continue
 
         try:
-
             command = '%s.%s' % (name, method)
 
             # -----------------------------------------------------------------
@@ -127,8 +128,10 @@ for name, library, excluded, byte_convert in setup:
             # -----------------------------------------------------------------
             # Simple call direct:
             # -----------------------------------------------------------------
-            elif command in byte_convert:
+            elif method in byte_value:
                 data[name]['info'][method] = get_size(eval(command))
+            elif method in byte_function:
+                data[name]['info'][method] = get_size(eval('%s()' % command))
             elif command_type == tuple:
                 data[name]['info'][method] = eval(command)
             else:   # Function
@@ -163,7 +166,7 @@ for name, library, excluded, byte_convert in setup:
         except:
             data[name]['error'][method] = sys.exc_info()
 
-for name, library, excluded in setup:
+for name, library, excluded, byte_value, byte_function in setup:
     for mode in ('info', 'error'):
         print('\n\nLibrary %s, INFO' % name)
         for field in sorted(data[name][mode]):
