@@ -25,7 +25,7 @@ user = config.get('openerp', 'user')
 pwd = config.get('openerp', 'pwd')
 
 # -----------------------------------------------------------------------------
-# XMLRPC connection for autentication (UID) and proxy
+# XMLRPC connection for authentication (UID) and proxy
 # -----------------------------------------------------------------------------
 sock = xmlrpclib.ServerProxy(
     'http://%s:%s/xmlrpc/common' % (server, port), allow_none=True)
